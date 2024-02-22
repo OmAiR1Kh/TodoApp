@@ -1,0 +1,15 @@
+.custom-bg {
+  background: #7b519b;
+}
+
+
+
+input {
+  border: none;
+}
+
+.custom-btn {
+  background: #b6a3c2;
+  color: #7f17ce;
+  border-radius: 20px;
+}

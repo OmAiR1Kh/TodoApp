@@ -1,0 +1,67 @@
+<div
+  class="login-container width-full dark bg-dark d-flex align-items-center justify-content-center vh-100"
+>
+  <img
+    src="assets/luca-bravo-a_hPPrncGlQ-unsplash.jpg"
+    alt="I DO image"
+    height="100%"
+    class="img-fluid"
+    width="50%"
+  />
+  <form
+    class="d-flex flex-column w-50 min-vh-100 align-items-center justify-content-center gap-4 custom-bg"
+    style="z-index: 1"
+    #form="ngForm"
+    (ngSubmit)="register()"
+  >
+    <h2 class="text-white w-80 text-x">Time To Work!</h2>
+    <div class="w-80">
+      <label class="d-flex flex-column gap-2 text-white">
+        Username
+        <input
+          type="text"
+          class="form-control w-80 bg-dark dark text-white"
+          name="username"
+          [(ngModel)]="userRegister.username"
+        />
+      </label>
+    </div>
+    <div class="w-80">
+      <label class="d-flex flex-column gap-2 text-white">
+        Email
+        <input
+          type="email"
+          class="form-control w-80 bg-dark dark text-white"
+          name="email"
+          [(ngModel)]="userRegister.email"
+        />
+      </label>
+    </div>
+    <div class="w-80">
+      <label class="d-flex flex-column gap-2 text-white">
+        Password
+        <input
+          type="password"
+          [(ngModel)]="userRegister.password"
+          name="password"
+          class="form-control w-80 bg-dark dark text-white"
+        />
+      </label>
+    </div>
+    <div class="w-80">
+      <label class="d-flex flex-column gap-2 text-white">
+        Image
+        <input
+          type="file"
+          (change)="handleFileInput($event)"
+          accept=".png"
+          name="password"
+          class="form-control w-80 bg-dark dark text-white"
+        />
+      </label>
+    </div>
+    <div class="w-80">
+      <button class="btn custom-btn w-80">SIGN IN</button>
+    </div>
+  </form>
+</div>

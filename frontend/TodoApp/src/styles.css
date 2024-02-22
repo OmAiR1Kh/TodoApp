@@ -1,0 +1,59 @@
+/* You can add global styles to this file, and also import other style files */
+
+* {
+  font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande",
+    "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+body {
+  background: rgb(33, 37, 41);
+}
+
+.container {
+  width: 80%;
+}
+.w-90 {
+  width: 90%;
+}
+
+.w-80 {
+  width: 80%;
+}
+
+.bg-purple {
+  background: #503c6d;
+}
+
+.w-50 {
+  width: 50%;
+}
+.h-50 {
+  height: 50vh;
+}
+.text-lg {
+  font-size: 5rem;
+}
+
+.text-x {
+  font-size: 2.5rem;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.text-sm {
+  font-size: 0.7rem !important;
+  opacity: 0.6;
+}
+
+.text-nr {
+  opacity: 1;
+}
+
+.text-md {
+  font-size: 0.8rem;
+}

@@ -1,0 +1,80 @@
+<div data-modal class="bg-5B5E60">
+  <h2>Add Todo</h2>
+  <form #form="ngForm" (ngSubmit)="addTodo()">
+    <div class="mb-3 position-relative pt-4">
+      <label for="title" class="form-label">Todo Title</label>
+      <input
+        type="text"
+        name="title"
+        class="form-control light bg-light"
+        id="title"
+        required="required"
+        [(ngModel)]="newTodo.title"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Todo Description</label>
+      <input
+        type="text"
+        [(ngModel)]="newTodo.description"
+        name="description"
+        class="form-control"
+        id="description"
+        required="required"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="estimatedTime" class="form-label">Estimated Time/hours</label>
+      <input
+        type="number"
+        [(ngModel)]="newTodo.estimatedTime"
+        name="estimatedTime"
+        class="form-control"
+        id="estimatedTime"
+        required="required"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="category" class="form-label">Todo Category</label>
+      <input
+        type="text"
+        [(ngModel)]="newTodo.category"
+        name="category"
+        class="form-control"
+        id="category"
+        required="required"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="completedDate" class="form-label">Due Date</label>
+      <input
+        [(ngModel)]="newTodo.completedDate"
+        type="date"
+        name="completedDate"
+        class="form-control"
+        id="completedDate"
+        required="required"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="importance" class="form-label">Importance</label>
+      <select
+        type="date"
+        name="importance"
+        class="form-control select"
+        id="importance"
+        value="12"
+        [(ngModel)]="newTodo.importance"
+        required="required"
+      >
+        <option value="12" disabled selected>Importance Level</option>
+        <option value="0">LOW</option>
+        <option value="1">MEDIUM</option>
+        <option value="2">HIGH</option>
+      </select>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+  </form>
+</div>

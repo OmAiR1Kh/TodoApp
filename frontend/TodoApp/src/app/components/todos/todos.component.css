@@ -1,0 +1,24 @@
+.low {
+  background: blue !important;
+  padding: 5px !important;
+}
+
+.med {
+  background: yellow;
+  padding: 5px;
+}
+
+.high {
+  background: red;
+  padding: 5px;
+}
+
+.bg-5B5E60 {
+  background: #5b5e60 !important;
+}
+
+.select {
+  padding: 0;
+  padding-left: 1rem;
+  font-size: 0.8rem;
+}

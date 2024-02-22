@@ -1,0 +1,169 @@
+<div class="container text-white bg-5B5E60">
+  <h1 class="border-bottom border-dark pb-4 pt-4">My Todos</h1>
+  <div
+    class="row position-relative w-100 min-vh-100 bg-5B5E60"
+    *ngIf="add == true"
+  >
+    <button
+      (click)="add = false"
+      class="btn btn-danger position-absolute top-5 end-50"
+      style="width: 120px; padding: 0.5rem"
+    >
+      Close
+    </button>
+    <app-add-todo></app-add-todo>
+  </div>
+
+  <div *ngIf="add == false" class="pb-2" style="cursor: pointer">
+    <button (click)="changeAdd()" class="btn btn-primary">Add Todo</button>
+  </div>
+  <div class="d-flex flex-row w-100 gap-2">
+    <div class="flex flex-column w-30">
+      <div
+        class="badge w-100 bg-dark dark p-2 d-flex align-items-center justify-content-start flex-row"
+      >
+        <i class="fa fa-bars todo" aria-hidden="true"></i>
+        <p class="p-0 my-0 mx-2">To Do</p>
+      </div>
+      <ul
+        *ngIf="toDoItems && toDoItems.length"
+        class="text-align-left p-0 mt-1"
+      >
+        <li
+          *ngFor="let item of toDoItems"
+          class="nav-link d-flex flex-column bg-dark w-100 p-2 rounded rounded-12"
+        >
+          <span class="text-md">{{ item.title }}</span>
+          <span class="text-md"
+            ><span class="text-sm">Category:</span> {{ item.category }}</span
+          >
+          <span class="text-md"
+            ><span class="text-sm">Description:</span>
+            {{ item.description }}</span
+          >
+          <span class="text-md"
+            ><span class="text-sm">Estimate:</span>
+            {{ item.estimatedTime }} hours</span
+          >
+          <!-- <span>Category: {{ item.category }}</span> -->
+          <span class="text-md"
+            ><span class="text-sm">Due Date:</span>
+            <span class="text-nr">{{
+              item.completedDate.toString().split("T")[0]
+            }}</span></span
+          >
+          <span [innerHTML]="getImportanceHTML(item.importance)"
+            >Importance:
+          </span>
+          <select
+            [(ngModel)]="item.status"
+            (ngModelChange)="updateTodo(item.id, item)"
+            class="form-control select"
+          >
+            <option value="0">To Do</option>
+            <option value="1">Doing</option>
+            <option value="2">Done</option>
+          </select>
+        </li>
+      </ul>
+    </div>
+    <div class="flex flex-column w-30">
+      <div
+        class="badge w-100 bg-dark dark p-2 d-flex align-items-center justify-content-start flex-row"
+      >
+        <i class="fa fa-th-list" aria-hidden="true"></i>
+        <p class="p-0 my-0 mx-2">Doing</p>
+      </div>
+      <ul
+        *ngIf="doingItems && doingItems.length"
+        class="text-align-left p-0 mt-1"
+      >
+        <li
+          *ngFor="let item of doingItems"
+          class="nav-link d-flex flex-column bg-dark w-100 p-2 rounded rounded-12"
+        >
+          <span class="text-md">{{ item.title }}</span>
+          <span class="text-md"
+            ><span class="text-sm">Category:</span> {{ item.category }}</span
+          >
+          <span class="text-md"
+            ><span class="text-sm">Description:</span>
+            {{ item.description }}</span
+          >
+          <span class="text-md"
+            ><span class="text-sm">Estimate:</span>
+            {{ item.estimatedTime }} hours</span
+          >
+          <!-- <span>Category: {{ item.category }}</span> -->
+          <span class="text-md"
+            ><span class="text-sm">Due Date:</span>
+            <span class="text-nr">{{
+              item.completedDate.toString().split("T")[0]
+            }}</span></span
+          >
+          <span [innerHTML]="getImportanceHTML(item.importance)"
+            >Importance:
+          </span>
+          <select
+            [(ngModel)]="item.status"
+            (ngModelChange)="updateTodo(item.id, item)"
+            class="form-control select"
+          >
+            <option value="0">To Do</option>
+            <option value="1">Doing</option>
+            <option value="2">Done</option>
+          </select>
+        </li>
+      </ul>
+    </div>
+    <div class="flex flex-column w-30">
+      <div
+        class="badge w-100 bg-dark dark p-2 d-flex align-items-center justify-content-start flex-row"
+      >
+        <i class="fa fa-check-square-o" aria-hidden="true"></i>
+        <p class="p-0 my-0 mx-2">Done</p>
+      </div>
+      <ul
+        *ngIf="doneItems && doneItems.length"
+        class="text-align-left p-0 mt-1"
+      >
+        <li
+          *ngFor="let item of doneItems"
+          class="nav-link d-flex flex-column bg-dark w-100 p-2 rounded rounded-12"
+        >
+          <span class="text-md">{{ item.title }}</span>
+          <span class="text-md"
+            ><span class="text-sm">Category:</span> {{ item.category }}</span
+          >
+          <span class="text-md"
+            ><span class="text-sm">Description:</span>
+            {{ item.description }}</span
+          >
+          <span class="text-md"
+            ><span class="text-sm">Estimate:</span>
+            {{ item.estimatedTime }} hours</span
+          >
+          <!-- <span>Category: {{ item.category }}</span> -->
+          <span class="text-md"
+            ><span class="text-sm">Due Date:</span>
+            <span class="text-nr">{{
+              item.completedDate.toString().split("T")[0]
+            }}</span></span
+          >
+          <span [innerHTML]="getImportanceHTML(item.importance)"
+            >Importance:
+          </span>
+          <select
+            [(ngModel)]="item.status"
+            (ngModelChange)="updateTodo(item.id, item)"
+            class="form-control select"
+          >
+            <option value="0">To Do</option>
+            <option value="1">Doing</option>
+            <option value="2">Done</option>
+          </select>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

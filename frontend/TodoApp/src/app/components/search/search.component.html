@@ -1,0 +1,39 @@
+<div class="container text-white bg-5B5E60 min-vh-100 pt-5">
+  <input
+    type="text"
+    placeholder="Search!"
+    [(ngModel)]="searchValue"
+    (ngModelChange)="search(searchValue)"
+    class="form-control w-80 bg-dark dark text-white"
+  />
+  <ul
+    *ngIf="filterTodos && filterTodos.length"
+    class="text-align-left p-0 mt-1"
+  >
+    <li
+      *ngFor="let item of filterTodos"
+      class="nav-link d-flex flex-column bg-purple w-100 p-2 rounded rounded-12"
+    >
+      <span class="text-md">{{ item.title }}</span>
+      <span class="text-md"
+        ><span class="text-sm">Category:</span> {{ item.category }}</span
+      >
+      <span class="text-md"
+        ><span class="text-sm">Description:</span> {{ item.description }}</span
+      >
+      <span class="text-md"
+        ><span class="text-sm">Estimate:</span>
+        {{ item.estimatedTime }} hours</span
+      >
+      <!-- <span>Category: {{ item.category }}</span> -->
+      <span class="text-md"
+        ><span class="text-sm">Due Date:</span>
+        <span class="text-nr">{{
+          item.completedDate.toString().split("T")[0]
+        }}</span></span
+      >
+      <span [innerHTML]="getImportanceHTML(item.importance)"></span>
+      <span [innerHTML]="getStatusHTML(item.status)"></span>
+    </li>
+  </ul>
+</div>
