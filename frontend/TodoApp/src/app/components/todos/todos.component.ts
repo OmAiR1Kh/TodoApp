@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, NgZone, OnInit } from '@angular/core';
 import { Todo } from '../../models/todo.model';
 import { TodoService } from '../../services/todo.service';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
@@ -17,7 +17,9 @@ export class TodosComponent implements OnInit {
 
   constructor(
     protected todoService: TodoService,
-    private sanitizer: DomSanitizer
+    private sanitizer: DomSanitizer,
+    private zone: NgZone,
+    private cdr: ChangeDetectorRef
   ) {}
 
   getImportanceHTML(importance: number): SafeHtml {
@@ -56,6 +58,87 @@ export class TodosComponent implements OnInit {
         this.todos = todos;
       },
     });
+  }
+
+  currentItem: any;
+  onDragStart(item: any) {
+    this.currentItem = item;
+  }
+
+  onDrop(e: any, status: number) {
+    this.zone.run(() => {
+      if (this.currentItem) {
+        console.log('triggered');
+        e.preventDefault();
+        const record: Todo | undefined = this.todos.find(
+          (t) => t.id == this.currentItem.id
+        );
+        console.log(record);
+        if (record != undefined) {
+          this.todoService
+            .updateTodo(record.id, { ...record, status: status })
+            .subscribe({
+              next: (t) => {
+                this.currentItem = null;
+
+                switch (record.status) {
+                  case 0:
+                    this.toDoItems = this.toDoItems.filter(
+                      (item) => item.id !== record.id
+                    );
+                    this.doingItems = this.doingItems.filter(
+                      (item) => item.id !== record.id
+                    );
+                    this.doneItems = this.doneItems.filter(
+                      (item) => item.id !== record.id
+                    );
+                    break;
+                  case 1:
+                    this.toDoItems = this.toDoItems.filter(
+                      (item) => item.id !== record.id
+                    );
+                    this.doingItems = this.doingItems.filter(
+                      (item) => item.id !== record.id
+                    );
+                    this.doneItems = this.doneItems.filter(
+                      (item) => item.id !== record.id
+                    );
+                    break;
+                  case 2:
+                    this.toDoItems = this.toDoItems.filter(
+                      (item) => item.id !== record.id
+                    );
+                    this.doingItems = this.doingItems.filter(
+                      (item) => item.id !== record.id
+                    );
+                    this.doneItems = this.doneItems.filter(
+                      (item) => item.id !== record.id
+                    );
+                    break;
+                }
+                switch (status) {
+                  case 0:
+                    this.toDoItems.push(record);
+                    break;
+                  case 1:
+                    this.doingItems.push(record);
+                    break;
+                  case 2:
+                    this.doneItems.push(record);
+                    break;
+                }
+              },
+            });
+        }
+        this.cdr.detectChanges();
+      }
+    });
+  }
+
+  onDragOver(e: any) {
+    console.log(e);
+    e.preventDefault();
+    console.log(e.target.id);
   }
 
   updateTodo(id: any, data: any) {

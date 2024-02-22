@@ -11,7 +11,14 @@ import { RegisterComponent } from './components/register/register.component';
 import { SearchComponent } from './components/search/search.component';
 
 @NgModule({
-  declarations: [AppComponent, TodosComponent, LoginComponent, AddTodoComponent, RegisterComponent, SearchComponent],
+  declarations: [
+    AppComponent,
+    TodosComponent,
+    LoginComponent,
+    AddTodoComponent,
+    RegisterComponent,
+    SearchComponent,
+  ],
   imports: [BrowserModule, AppRoutingModule, HttpClientModule, FormsModule],
   providers: [],
   bootstrap: [AppComponent],

@@ -18,20 +18,24 @@
     <button (click)="changeAdd()" class="btn btn-primary">Add Todo</button>
   </div>
   <div class="d-flex flex-row w-100 gap-2">
-    <div class="flex flex-column w-30">
+    <div
+      class="flex flex-column w-30 ul-h"
+      (drop)="onDrop($event, 0)"
+      id="0"
+      (dragover)="onDragOver($event)"
+    >
       <div
         class="badge w-100 bg-dark dark p-2 d-flex align-items-center justify-content-start flex-row"
       >
         <i class="fa fa-bars todo" aria-hidden="true"></i>
         <p class="p-0 my-0 mx-2">To Do</p>
       </div>
-      <ul
-        *ngIf="toDoItems && toDoItems.length"
-        class="text-align-left p-0 mt-1"
-      >
+      <ul class="text-align-left p-0 mt-1 ul-h">
         <li
           *ngFor="let item of toDoItems"
-          class="nav-link d-flex flex-column bg-dark w-100 p-2 rounded rounded-12"
+          draggable="true"
+          class="nav-link d-flex flex-column bg-dark w-100 p-2 rounded rounded-12 mb-2"
+          (dragstart)="onDragStart(item)"
         >
           <span class="text-md">{{ item.title }}</span>
           <span class="text-md"
@@ -67,20 +71,24 @@
         </li>
       </ul>
     </div>
-    <div class="flex flex-column w-30">
+    <div
+      class="flex flex-column w-30 ul-h"
+      (drop)="onDrop($event, 1)"
+      id="1"
+      (dragover)="onDragOver($event)"
+    >
       <div
         class="badge w-100 bg-dark dark p-2 d-flex align-items-center justify-content-start flex-row"
       >
         <i class="fa fa-th-list" aria-hidden="true"></i>
         <p class="p-0 my-0 mx-2">Doing</p>
       </div>
-      <ul
-        *ngIf="doingItems && doingItems.length"
-        class="text-align-left p-0 mt-1"
-      >
+      <ul class="text-align-left p-0 mt-1">
         <li
           *ngFor="let item of doingItems"
-          class="nav-link d-flex flex-column bg-dark w-100 p-2 rounded rounded-12"
+          draggable="true"
+          (dragstart)="onDragStart(item)"
+          class="nav-link d-flex flex-column bg-dark w-100 p-2 rounded rounded-12 mb-2"
         >
           <span class="text-md">{{ item.title }}</span>
           <span class="text-md"
@@ -94,7 +102,6 @@
             ><span class="text-sm">Estimate:</span>
             {{ item.estimatedTime }} hours</span
           >
-          <!-- <span>Category: {{ item.category }}</span> -->
           <span class="text-md"
             ><span class="text-sm">Due Date:</span>
             <span class="text-nr">{{
@@ -116,20 +123,24 @@
         </li>
       </ul>
     </div>
-    <div class="flex flex-column w-30">
+    <div
+      class="flex flex-column w-30 ul-h"
+      (drop)="onDrop($event, 2)"
+      id="2"
+      (dragover)="onDragOver($event)"
+    >
       <div
         class="badge w-100 bg-dark dark p-2 d-flex align-items-center justify-content-start flex-row"
       >
         <i class="fa fa-check-square-o" aria-hidden="true"></i>
         <p class="p-0 my-0 mx-2">Done</p>
       </div>
-      <ul
-        *ngIf="doneItems && doneItems.length"
-        class="text-align-left p-0 mt-1"
-      >
+      <ul class="text-align-left p-0 mt-1">
         <li
+          draggable="true"
           *ngFor="let item of doneItems"
-          class="nav-link d-flex flex-column bg-dark w-100 p-2 rounded rounded-12"
+          (dragstart)="onDragStart(item)"
+          class="nav-link d-flex flex-column bg-dark w-100 p-2 rounded rounded-12 mb-2"
         >
           <span class="text-md">{{ item.title }}</span>
           <span class="text-md"

@@ -22,3 +22,7 @@
   padding-left: 1rem;
   font-size: 0.8rem;
 }
+
+.ul-h {
+  min-height: 50px;
+}
